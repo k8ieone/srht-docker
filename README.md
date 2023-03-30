@@ -1,3 +1,5 @@
+**You probably don't want to use this in production**
+
 # sourcehut ♥ docker
 Unofficial docker containers for hosting sourcehut.
 
@@ -26,12 +28,12 @@ as some services may be required by others.
 It is best to consult the sourcehut documentation
 before removing services.
 A couple of good places to start,
-are the (installation guide)[https://man.sr.ht/installation.md]
-and the (configuration guide)[https://man.sr.ht/configuration.md].
+are the [installation guide](https://man.sr.ht/installation.md)
+and the [configuration guide](https://man.sr.ht/configuration.md).
 
 ### Changing the sourchut configuration
 
-As stated in the (configuration guide)[https://man.sr.ht/configuration.md],
+As stated in the [configuration guide](https://man.sr.ht/configuration.md),
 sourcehut uses a central configuration file:
 
 > sr.ht services all use a shared configuration file, [...].
