@@ -6,7 +6,7 @@ services:
     environment:
       POSTGRES_USER: hut
       POSTGRES_PASSWORD: hut
-      POSTGRES_MULTIPLE_DATABASES: metasrht #,...
+      POSTGRES_MULTIPLE_DATABASES: metasrht,hubsrht
     volumes:
       - ./data/postgres:/var/lib/postgresql/data
       - ./postgres_sh:/docker-entrypoint-initdb.d
@@ -28,7 +28,7 @@ services:
     networks:
       - hut
     ports:
-      - 5647:8080
+      - 5001:8080
     depends_on:
       - postgres
       - redis
@@ -36,6 +36,23 @@ services:
       - ./config/config.ini:/etc/sr.ht/config.ini:ro
       - ./config/email.pub:/etc/sr.ht/email.pub:ro
       - ./config/email.priv:/etc/sr.ht/email.priv:ro
+
+  hub:
+    image: hub.sr.ht
+    build: ./services/hub.sr.ht
+    restart: unless-stopped
+    ports:
+      - 5002:8080
+    networks:
+      - hut
+    depends_on:
+      - postgres
+      - redis
+    volumes:
+      - ./config/config.ini:/etc/sr.ht/config.ini:ro
+      - ./config/email.pub:/etc/sr.ht/email.pub:ro
+      - ./config/email.priv:/etc/sr.ht/email.priv:ro
+
 networks:
   hut:
 #  builder:
