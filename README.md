@@ -149,11 +149,14 @@ This means adding serviced to the docker-compose file,
 and configuring them in the config.ini.
 
 ### [hub] Project Hub / Home
-Although the config.ini calls for oauth id and token,
-it appears as if you might not need them,
-when running locally.
+The oauth settings do not have to be configured,
+when running internally, as stated in the example configuration file:
 
-**TODO: Needs confirmation**
+> # Set of IP subnets which are permitted to utilize internal API
+> # authentication. This should be limited to the subnets from which your
+> # *.sr.ht services are running.
+
+### [git] Git VCS
 
 [^1]: If you have configured docker/podman for non-sudo mode, 
     you may run the command without the sudo. 
