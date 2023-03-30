@@ -8,7 +8,7 @@ services:
       POSTGRES_PASSWORD: hut
       POSTGRES_MULTIPLE_DATABASES: metasrht,hubsrht,gitsrht
     volumes:
-      - ./data/postgres:/var/lib/postgresql/data
+      - postgres:/var/lib/postgresql/data
       - ./postgres_sh:/docker-entrypoint-initdb.d
     networks:
       - hut
@@ -17,7 +17,7 @@ services:
     image: redis:7.0-alpine
     restart: unless-stopped
     volumes:
-      - ./data/redis:/data
+      - redis:/data
     networks:
       - hut
 
@@ -59,6 +59,7 @@ services:
     restart: unless-stopped
     ports:
       - 5003:8080
+      - 5022:22
     networks:
       - hut
     depends_on:
@@ -69,8 +70,13 @@ services:
       - ./config/email.pub:/etc/sr.ht/email.pub:ro
       - ./config/email.priv:/etc/sr.ht/email.priv:ro
       # use ./data/git as a folder to store git repositories
-      - ./data/git:/var/lib/git
+      - git:/var/lib/git
 
 networks:
   hut:
 #  builder:
+
+volumes:
+  git:
+  redis:
+  postgres:
