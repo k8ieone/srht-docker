@@ -1,0 +1,41 @@
+version: '3'
+services:
+  postgres:
+    image: postgres:14-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: hut
+      POSTGRES_PASSWORD: hut
+      POSTGRES_MULTIPLE_DATABASES: metasrht #,...
+    volumes:
+      - ./data/postgres:/var/lib/postgresql/data
+      - ./postgres_sh:/docker-entrypoint-initdb.d
+    networks:
+      - hut
+
+  redis:
+    image: redis:7.0-alpine
+    restart: unless-stopped
+    volumes:
+      - ./data/redis:/data
+    networks:
+      - hut
+
+  meta:
+    image: meta.sr.ht
+    build: ./services/meta.sr.ht
+    restart: unless-stopped
+    networks:
+      - hut
+    ports:
+      - 5647:8080
+    depends_on:
+      - postgres
+      - redis
+    volumes:
+      - ./config/config.ini:/etc/sr.ht/config.ini:ro
+      - ./config/email.pub:/etc/sr.ht/email.pub:ro
+      - ./config/email.priv:/etc/sr.ht/email.priv:ro
+networks:
+  hut:
+#  builder:

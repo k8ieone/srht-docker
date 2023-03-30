@@ -1,0 +1,6 @@
+config/config.ini
+config/pub.key
+config/email.pub
+config/email.priv
+data/redis/
+data/postgres
