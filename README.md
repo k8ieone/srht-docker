@@ -31,7 +31,7 @@ A couple of good places to start,
 are the [installation guide](https://man.sr.ht/installation.md)
 and the [configuration guide](https://man.sr.ht/configuration.md).
 
-### Changing the sourchut configuration
+### [meta] Basic Config
 
 As stated in the [configuration guide](https://man.sr.ht/configuration.md),
 sourcehut uses a central configuration file:
@@ -129,8 +129,18 @@ you'll have to build it yourself.
 
 After the base container has been build,
 you can navigate back into the project root
-and use `doas docker compose build`[^1]
+and use `sudo docker compose build`[^1]
 to build all other containers.
+
+## Admin User
+To create a user with the CLI,
+you have to start the containers,
+with `sudo docker compose up`[^1] 
+(or `sudo docker compose up -d` to run in background).
+
+Now run 
+`sudo docker compose exec meta metasrht-manageuser -t admin -e <email> <user>`
+to create a new user with the type admin.
 
 ## Additional configuration
 Now that we know how to get a base installation up and running,
@@ -138,7 +148,12 @@ it is time to add more services.
 This means adding serviced to the docker-compose file,
 and configuring them in the config.ini.
 
-Below is a guide for supported services
+### [hub] Project Hub / Home
+Although the config.ini calls for oauth id and token,
+it appears as if you might not need them,
+when running locally.
+
+**TODO: Needs confirmation**
 
 [^1]: If you have configured docker/podman for non-sudo mode, 
     you may run the command without the sudo. 
