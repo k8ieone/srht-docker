@@ -2,7 +2,7 @@
 
 FROM sr.ht-base
 
-RUN apk add hub.sr.ht
+RUN apk add hub.sr.ht py3-yaml
 RUN apk add nginx
 
 COPY ./start.sh /

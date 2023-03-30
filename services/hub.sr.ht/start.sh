@@ -1,6 +1,8 @@
 #!/bin/bash
 set -e
 
+hubsrht-initdb
+
 # hub.sr.ht-web
 # https://git.sr.ht/~sircmpwn/sr.ht-apkbuilds/tree/master/item/sr.ht/hub.sr.ht/hub.sr.ht.initd
 /usr/bin/gunicorn hubsrht.app:app \
