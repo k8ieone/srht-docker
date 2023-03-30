@@ -1,7 +1,7 @@
 # sourcehut ♥ docker
 Unofficial docker containers for hosting sourcehut.
 
-This project was inspired by (ulyc's)[https://git.sr.ht/~ulyc/] (sourcehut-docker)[https://git.sr.ht/~ulyc/sourcehut-docker/tree/main]
+This project was inspired by [ulyc's](https://git.sr.ht/~ulyc/) [sourcehut-docker](https://git.sr.ht/~ulyc/sourcehut-docker/tree/main)
 project.
 But since I was unable to get their *init.sh* to work,
 I decided to write my own port.
@@ -49,7 +49,7 @@ to *config.ini* and adjust the content to your liking.
 
 Most importantly, we'll need to generate a couple of keys:
 First of all navigate into the base directory,
-and run `sudo ./Dockerfile` [^sudo] to build a base image.
+and run `sudo ./Dockerfile` [^1] to build a base image.
 We'll need this image later, when we are building the services,
 but for now, we can use it to generate our keys.
 
@@ -57,9 +57,9 @@ To do that,
 we can run the container and append the `srht-keygen` command.
 
 That way we can generate a service key 
-using `doas docker run sr.ht-base srht-keygen service` [^sudo],
+using `doas docker run sr.ht-base srht-keygen service` [^1],
 and a network key using 
-`doas docker run sr.ht-base srht-keygen network` [^sudo].
+`doas docker run sr.ht-base srht-keygen network` [^1].
 
 Now you have to copy those keys (seperatly) 
 and paste them into the appropriate section in the *config.ini*,
@@ -70,7 +70,7 @@ you just created.
 
 We also need to create a public/private keypair for webhooks.
 Luckily, the *srht-keygen* util can also do that:
-`doas docker run sr.ht-base srht-keygen webhook` [^sudo]
+`doas docker run sr.ht-base srht-keygen webhook` [^1]
 This time around, we only want to copy the private key,
 and put it in the *config.ini*
 
@@ -83,8 +83,8 @@ For now, just put the public key into a *pub.key* file.
 Additionally sourcehut requires you to setup email using SMTP.
 If you do not have a email account with smtp/imap support,
 you might want to have a look at
-(docker-mailserver)[https://github.com/docker-mailserver/]
-or (purelymail)[https://purelymail.com].
+[docker-mailserver](https://github.com/docker-mailserver/)
+or [purelymail](https://purelymail.com).
 
 > smtp-host=<smtp-server>
 > smtp-port=<smtp-server-port>
@@ -118,7 +118,7 @@ you should consult the official sourcehut configuration.
 Additionally, 
 every sourcehut service (that requires configuration),
 has a *config.example.ini* located in its root folder,
-i.e the (meta.sh.ht repo)[https://git.sr.ht/~sircmpwn/meta.sr.ht/tree/master/item/config.example.ini]
+i.e the [meta.sh.ht repo](https://git.sr.ht/~sircmpwn/meta.sr.ht/tree/master/item/config.example.ini)
 
 ## Building
 You can manage this project with *docker-compose*,
@@ -127,12 +127,8 @@ you'll have to build it yourself.
 
 After the base container has been build,
 you can navigate back into the project root
-and use `doas docker compose build`[^sudo]
+and use `doas docker compose build`[^1]
 to build all other containers.
-
-[^sudo]: If you have configured docker/podman for non-sudo mode, 
-    you may run the command without the sudo. 
-    If you are using doas, you might have to replace sudo with doas
 
 ## Additional configuration
 Now that we know how to get a base installation up and running,
@@ -141,3 +137,7 @@ This means adding serviced to the docker-compose file,
 and configuring them in the config.ini.
 
 Below is a guide for supported services
+
+[^1]: If you have configured docker/podman for non-sudo mode, 
+    you may run the command without the sudo. 
+    If you are using doas, you might have to replace sudo with doas
