@@ -32,7 +32,7 @@ target "hub" {
   contexts = {
     base = "target:base"
   }
-  tags = ["${REPO}/srht-meta:${TAG}"]
+  tags = ["${REPO}/srht-hub:${TAG}"]
   platforms = ["linux/amd64", "linux/arm64"]
 }
 
@@ -42,6 +42,6 @@ target "git" {
   contexts = {
     base = "target:base"
   }
-  tags = ["${REPO}/srht-meta:${TAG}"]
+  tags = ["${REPO}/srht-git:${TAG}"]
   platforms = ["linux/amd64", "linux/arm64"]
 }
