@@ -39,5 +39,4 @@ COPY ./sshd_config /etc/sshd/sshd_config
 
 RUN echo "*/20 * * * *  /usr/bin/gitsrht-periodic" >> /etc/crontab
 
-USER nginx
 CMD ["/bin/sh", "start.sh"]
