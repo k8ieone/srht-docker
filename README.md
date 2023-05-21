@@ -1,6 +1,6 @@
 # About this fork
 This is a fork of [comcloudway's repo](https://git.sr.ht/~comcloudway/docker-hut).
-The aim of this fork is to create pre-built multiarch images for sourcehut. I use [Docker Buildx Bake]https://docs.docker.com/engine/reference/commandline/buildx_bake/) to simplify the build process.
+The aim of this fork is to create pre-built multiarch images for sourcehut. I use [Docker Buildx Bake](https://docs.docker.com/engine/reference/commandline/buildx_bake/) to simplify the build process.
 The images are built every week and are not versioned in any way.
 The rest of this README is unaltered.
 
