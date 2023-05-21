@@ -3,7 +3,7 @@ name: "Build base Docker image"
 on:
   push:
     paths:
-      - '**'
+      - 'base/Dockerfile'
   schedule:
     - cron: '0 0 */7 * *' # runs weekly
   workflow_dispatch:
