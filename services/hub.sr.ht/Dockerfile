@@ -20,10 +20,9 @@ FROM docker.io/alpine:3.17 as runner
 COPY --from=builder /etc/apk/keys/builder* /etc/apk/keys/
 
 RUN --mount=type=cache,target=/packages/ \
-apk add --repository /packages/sr.ht hub.sr.ht
+apk add --repository /packages/sr.ht hub.sr.ht py3-yaml
 RUN apk add nginx
 COPY ./start.sh /
 COPY ./nginx.conf /etc/nginx/http.d/default.conf
 
-USER nginx
 CMD ["/bin/sh", "start.sh"]
