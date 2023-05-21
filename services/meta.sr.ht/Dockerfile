@@ -22,11 +22,11 @@ COPY --from=builder /etc/apk/keys/builder* /etc/apk/keys/
 
 RUN --mount=type=cache,target=/packages/ \
 apk add --repository /packages/sr.ht meta.sr.ht
-RUN apk add nginx
+RUN apk add nginx sudo
 COPY ./start.sh /
 COPY ./nginx.conf /etc/nginx/http.d/default.conf
 
 RUN echo "0	2	*	*	*  /usr/bin/metasrht-daily" >>/etc/crontab
 
-USER nginx
+RUN adduser -D srht
 CMD ["/bin/sh", "start.sh"]
