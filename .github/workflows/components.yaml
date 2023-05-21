@@ -34,7 +34,7 @@ jobs:
           context: ./services/meta.sr.ht
           platforms: linux/amd64,linux/arm64
           push: true
-          tags: ghcr.io/${{ github.actor }}/srht-base:latest
+          tags: ghcr.io/${{ github.actor }}/srht-meta:latest
   git:
     runs-on: ubuntu-latest
     steps:
@@ -61,4 +61,4 @@ jobs:
           context: ./services/git.sr.ht
           platforms: linux/amd64,linux/arm64
           push: true
-          tags: ghcr.io/${{ github.actor }}/srht-base:latest
+          tags: ghcr.io/${{ github.actor }}/srht-git:latest
