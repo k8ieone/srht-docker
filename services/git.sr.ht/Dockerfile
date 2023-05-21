@@ -1,4 +1,4 @@
-FROM a as builder
+FROM ghcr.io/a13xie/srht-base as builder
 RUN apk add git alpine-sdk sudo nodejs
 RUN adduser -D builder
 RUN echo "builder ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/builder && chmod 0440 /etc/sudoers.d/builder
