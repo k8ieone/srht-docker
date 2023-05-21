@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  base:
+  all:
     runs-on: ubuntu-latest
     steps:
       -
