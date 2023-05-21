@@ -7,7 +7,7 @@ variable "REPO" {
 }
 
 group "default" {
-  targets = ["meta", "hub", "git"]
+  targets = ["meta", "hub", "git", "hg"]
 }
 
 target "base" {
@@ -43,5 +43,15 @@ target "git" {
     base = "target:base"
   }
   tags = ["${REPO}/srht-git:${TAG}"]
+  platforms = ["linux/amd64", "linux/arm64"]
+}
+
+target "hg" {
+  dockerfile = "Dockerfile"
+  context = "./services/hg.sr.ht"
+  contexts = {
+    base = "target:base"
+  }
+  tags = ["${REPO}/srht-hg:${TAG}"]
   platforms = ["linux/amd64", "linux/arm64"]
 }
