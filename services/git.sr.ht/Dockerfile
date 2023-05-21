@@ -1,4 +1,4 @@
-FROM ghcr.io/a13xie/srht-base as builder
+FROM base as builder
 RUN apk add git alpine-sdk sudo nodejs
 RUN adduser -D builder
 RUN echo "builder ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/builder && chmod 0440 /etc/sudoers.d/builder
@@ -19,6 +19,8 @@ WORKDIR /sr.ht-apkbuilds/sr.ht/py3-scmsrht
 RUN sudo -u builder abuild -r
 
 WORKDIR /sr.ht-apkbuilds/sr.ht/git.sr.ht
+ADD version.txt /
+RUN sed -i '/pkgver=/c\pkgver=$(cat /version.txt)' APKBUILD
 RUN sudo -u builder abuild checksum
 RUN sudo -u builder abuild -r
 # Copy the packages into a cache
