@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-gitsrht-initdb
+hgsrht-initdb
 
 # git.sr.ht
 # https://git.sr.ht/~sircmpwn/sr.ht-apkbuilds/tree/master/item/sr.ht/git.sr.ht/git.sr.ht.initd
