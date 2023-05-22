@@ -17,48 +17,48 @@ RUN chown -R builder:builder /sr.ht-apkbuilds
 # TODO: Could be optimized by splitting packages into
 # separate build stages
 WORKDIR /sr.ht-apkbuilds/sr.ht/py3-case
-RUN sudo -u builder abuild -r
+RUN ulimit -n 1024000 && sudo -u builder abuild -r -K
 WORKDIR /sr.ht-apkbuilds/sr.ht/py3-vine
-RUN sudo -u builder abuild -r
+RUN ulimit -n 1024000 && sudo -u builder abuild -r -K
 WORKDIR /sr.ht-apkbuilds/sr.ht/py3-mistletoe
-RUN sudo -u builder abuild -r
+RUN ulimit -n 1024000 && sudo -u builder abuild -r -K
 WORKDIR /sr.ht-apkbuilds/sr.ht/py3-atpublic
-RUN sudo -u builder abuild -r
+RUN ulimit -n 1024000 && sudo -u builder abuild -r -K
 WORKDIR /sr.ht-apkbuilds/sr.ht/py3-aiosmtpd
-RUN sudo -u builder abuild -r
+RUN ulimit -n 1024000 && sudo -u builder abuild -r -K
 WORKDIR /sr.ht-apkbuilds/sr.ht/py3-amqp
-RUN sudo -u builder abuild -r
+RUN ulimit -n 1024000 && sudo -u builder abuild -r -K
 WORKDIR /sr.ht-apkbuilds/sr.ht/py3-billiard
-RUN sudo -u builder abuild -r
+RUN ulimit -n 1024000 && sudo -u builder abuild -r -K
 WORKDIR /sr.ht-apkbuilds/sr.ht/py3-click-repl
-RUN sudo -u builder abuild -r
+RUN ulimit -n 1024000 && sudo -u builder abuild -r -K
 WORKDIR /sr.ht-apkbuilds/sr.ht/py3-click-didyoumean
-RUN sudo -u builder abuild -r
+RUN ulimit -n 1024000 && sudo -u builder abuild -r -K
 WORKDIR /sr.ht-apkbuilds/sr.ht/py3-kombu
-RUN sudo -u builder abuild -r
+RUN ulimit -n 1024000 && sudo -u builder abuild -r -K
 WORKDIR /sr.ht-apkbuilds/sr.ht/py3-celery
-RUN sudo -u builder abuild -r
+RUN ulimit -n 1024000 && sudo -u builder abuild -r -K
 WORKDIR /sr.ht-apkbuilds/sr.ht/py3-pgpy
-RUN sudo -u builder abuild -r
+RUN ulimit -n 1024000 && sudo -u builder abuild -r -K
 WORKDIR /sr.ht-apkbuilds/sr.ht/py3-infinity
-RUN sudo -u builder abuild -r
+RUN ulimit -n 1024000 && sudo -u builder abuild -r -K
 WORKDIR /sr.ht-apkbuilds/sr.ht/py3-intervals
-RUN sudo -u builder abuild -r
+RUN ulimit -n 1024000 && sudo -u builder abuild -r -K
 WORKDIR /sr.ht-apkbuilds/sr.ht/py3-colour
-RUN sudo -u builder abuild -r
+RUN ulimit -n 1024000 && sudo -u builder abuild -r -K
 WORKDIR /sr.ht-apkbuilds/sr.ht/py3-orderedmultidict
-RUN sudo -u builder abuild -r
+RUN ulimit -n 1024000 && sudo -u builder abuild -r -K
 WORKDIR /sr.ht-apkbuilds/sr.ht/py3-furl
-RUN sudo -u builder abuild -r
+RUN ulimit -n 1024000 && sudo -u builder abuild -r -K
 WORKDIR /sr.ht-apkbuilds/sr.ht/py3-sqlalchemy-utils
-RUN sudo -u builder abuild -r
+RUN ulimit -n 1024000 && sudo -u builder abuild -r -K
 
 # py3-srht requires npm to build
 RUN apk add npm
 # All the sr.ht components require py3-srht, so this image is used as
 # a base for all the components
 WORKDIR /sr.ht-apkbuilds/sr.ht/py3-srht
-RUN sudo -u builder abuild -r
+RUN ulimit -n 1024000 && sudo -u builder abuild -r -K
 
 
 FROM docker.io/alpine:3.17 AS final

@@ -9,22 +9,22 @@ RUN chown -R builder:builder /sr.ht-apkbuilds
 
 # Some more dependencies for hg.sr.ht
 WORKDIR /sr.ht-apkbuilds/sr.ht/hg-evolve
-RUN sudo -u builder abuild -r
+RUN ulimit -n 1024000 && sudo -u builder abuild -r -K
 WORKDIR /sr.ht-apkbuilds/sr.ht/py3-unidiff
-RUN sudo -u builder abuild -r
+RUN ulimit -n 1024000 && sudo -u builder abuild -r -K
 WORKDIR /sr.ht-apkbuilds/sr.ht/py3-ansi2html
-RUN sudo -u builder abuild -r
+RUN ulimit -n 1024000 && sudo -u builder abuild -r -K
 WORKDIR /sr.ht-apkbuilds/sr.ht/builds.sr.ht
 RUN sudo -u builder abuild checksum
-RUN sudo -u builder abuild -r
+RUN ulimit -n 1024000 && sudo -u builder abuild -r -K
 WORKDIR /sr.ht-apkbuilds/sr.ht/py3-scmsrht
-RUN sudo -u builder abuild -r
+RUN ulimit -n 1024000 && sudo -u builder abuild -r -K
 
 WORKDIR /sr.ht-apkbuilds/sr.ht/hg.sr.ht
 ADD version.txt /
 RUN sed -i '/pkgver=/c\pkgver=$(cat /version.txt)' APKBUILD
 RUN sudo -u builder abuild checksum
-RUN sudo -u builder abuild -r
+RUN ulimit -n 1024000 && sudo -u builder abuild -r -K
 # Copy the packages into a cache
 RUN --mount=type=cache,target=/packages/ cp -r /home/builder/packages/ /
 
