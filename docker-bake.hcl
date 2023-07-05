@@ -1,9 +1,9 @@
 variable "TAG" {
-  default = "latest"
+  default = "test"
 }
 
 variable "REPO" {
-  default = "ghcr.io/a13xie"
+  default = "git.mcld.eu/a13xie"
 }
 
 group "default" {
@@ -20,7 +20,7 @@ target "meta" {
   dockerfile = "Dockerfile"
   context = "./services/meta.sr.ht"
   contexts = {
-    base = "target:base"
+    "sr.ht-base" = "target:base"
   }
   tags = ["${REPO}/srht-meta:${TAG}"]
   platforms = ["linux/amd64"]
@@ -30,7 +30,7 @@ target "hub" {
   dockerfile = "Dockerfile"
   context = "./services/hub.sr.ht"
   contexts = {
-    base = "target:base"
+    "sr.ht-base" = "target:base"
   }
   tags = ["${REPO}/srht-hub:${TAG}"]
   platforms = ["linux/amd64"]
@@ -40,7 +40,7 @@ target "git" {
   dockerfile = "Dockerfile"
   context = "./services/git.sr.ht"
   contexts = {
-    base = "target:base"
+    "sr.ht-base" = "target:base"
   }
   tags = ["${REPO}/srht-git:${TAG}"]
   platforms = ["linux/amd64"]
