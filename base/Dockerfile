@@ -38,8 +38,6 @@ WORKDIR /sr.ht-apkbuilds/sr.ht/py3-kombu
 RUN ulimit -n 1024000 && sudo -u builder abuild -r -K
 WORKDIR /sr.ht-apkbuilds/sr.ht/py3-celery
 RUN ulimit -n 1024000 && sudo -u builder abuild -r -K
-WORKDIR /sr.ht-apkbuilds/sr.ht/py3-pgpy
-RUN ulimit -n 1024000 && sudo -u builder abuild -r -K
 WORKDIR /sr.ht-apkbuilds/sr.ht/py3-infinity
 RUN ulimit -n 1024000 && sudo -u builder abuild -r -K
 WORKDIR /sr.ht-apkbuilds/sr.ht/py3-intervals
@@ -58,6 +56,10 @@ RUN apk add npm
 # All the sr.ht components require py3-srht, so this image is used as
 # a base for all the components
 WORKDIR /sr.ht-apkbuilds/sr.ht/py3-srht
+# Change the package version
+ADD base_version.txt /
+RUN sed -i '/pkgver=/c\pkgver=$(cat /base_version.txt)' APKBUILD
+RUN sudo -u builder abuild checksum
 RUN ulimit -n 1024000 && sudo -u builder abuild -r -K
 
 
