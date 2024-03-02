@@ -3,7 +3,7 @@ variable "TAG" {
 }
 
 variable "REPO" {
-  default = "ghcr.io/a13xie"
+  default = "ghcr.io/k8ieone"
 }
 
 group "default" {
