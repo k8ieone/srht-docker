@@ -1,7 +1,8 @@
 #!/bin/bash
 set -e
 
-hubsrht-initdb
+sr.ht-migrate hub.sr.ht upgrade head
+hub.sr.ht-migrate upgrade head
 
 # hub.sr.ht-web
 # https://git.sr.ht/~sircmpwn/sr.ht-apkbuilds/tree/master/item/sr.ht/hub.sr.ht/hub.sr.ht.initd
@@ -11,7 +12,7 @@ hubsrht-initdb
 
 # hub.sr.ht-api
 # https://git.sr.ht/~sircmpwn/sr.ht-apkbuilds/tree/master/item/sr.ht/hub.sr.ht/hub.sr.ht-api.initd
-/usr/bin/hubsrht-api \
+/usr/bin/hub.sr.ht-api \
     -b 0.0.0.0:5114 &
 
 nginx &

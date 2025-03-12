@@ -1,4 +1,4 @@
-FROM base as builder
+FROM base AS builder
 RUN apk add git alpine-sdk sudo nodejs
 RUN adduser -D builder
 RUN echo "builder ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/builder && chmod 0440 /etc/sudoers.d/builder
@@ -12,12 +12,12 @@ ADD version.txt /
 RUN sed -i '/pkgver=/c\pkgver=$(cat /version.txt)' APKBUILD
 # Currently there is one file which fails the checksum check
 RUN sudo -u builder abuild checksum
-RUN ulimit -n 1024000 && sudo -u builder abuild -r -K
+RUN sudo -u builder abuild -r -K
 # Copy the packages into a cache
 RUN --mount=type=cache,target=/packages/ cp -r /home/builder/packages/ /
 
 
-FROM docker.io/alpine:3.17 as runner
+FROM docker.io/library/alpine:3.20 AS runner
 COPY --from=builder /etc/apk/keys/builder* /etc/apk/keys/
 
 RUN --mount=type=cache,target=/packages/ \
