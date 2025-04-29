@@ -18,7 +18,6 @@ services:
 
   meta:
     image: ghcr.io/k8ieone/srht-meta
-    build: ./services/meta.sr.ht
     restart: unless-stopped
     ports:
       - 5001:8080
@@ -32,7 +31,6 @@ services:
 
   hub:
     image: ghcr.io/k8ieone/srht-hub
-    build: ./services/hub.sr.ht
     restart: unless-stopped
     ports:
       - 5002:8080
@@ -47,7 +45,6 @@ services:
 
   # git:
   #   image: git.sr.ht
-  #   build: ./services/git.sr.ht
   #   restart: unless-stopped
   #   ports:
   #     - 5003:8080
